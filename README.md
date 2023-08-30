@@ -6,3 +6,5 @@ You must have a Last.fm API key to use these programs. You can apply for one [he
 
 ## ⚠ Disclaimer
 You are responsible for your use of these programs, and must follow the [API Terms of Service](https://www.last.fm/api/tos)
+
+![Last.fm logo being hit with a hammer and smashing](https://github.com/duh/lastfm-utils/blob/main/img/lastfm-utils.png)
