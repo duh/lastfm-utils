@@ -27,14 +27,19 @@ user_response.raise_for_status()
 
 top_artists = set()
 user_top_artists = set()
+listeners_dict = {}
 
 for top_artist in chart_response.json()["artists"]["artist"]:
     top_artists.add(top_artist["name"])
+    listeners_dict[top_artist["name"]] = top_artist["listeners"]
     
 for top_artist in user_response.json()["topartists"]["artist"]:
     user_top_artists.add(top_artist["name"])
     
+intersection_sorted = sorted(list(top_artists.intersection(user_top_artists)), key=lambda artist: listeners_dict[artist], reverse=True)
+print(listeners_dict)
+
 if(len(user_top_artists) < args.userartists):
     print(f"User does not have enough artist scrobbles in this period! ({len(user_top_artists)} artists, {args.userartists} required)")
 else:
-    print(f"Mainstream artists: {top_artists.intersection(user_top_artists)}\n\n{len(top_artists.intersection(user_top_artists))} ({round((len(top_artists.intersection(user_top_artists)) / args.userartists) * 100, 2)}%) of {args.username}'s top {args.userartists} artists are in the top {args.chartartists} charts.")
+    print(f"Mainstream artists: {intersection_sorted}\n\n{len(top_artists.intersection(user_top_artists))} ({round((len(top_artists.intersection(user_top_artists)) / args.userartists) * 100, 2)}%) of {args.username}'s top {args.userartists} artists are in the top {args.chartartists} charts.")
