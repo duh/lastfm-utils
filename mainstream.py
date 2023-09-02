@@ -44,7 +44,6 @@ for top_artist in user_response.json()["topartists"]["artist"]:
     user_top_artists.add(top_artist["name"])
     
 intersection_sorted = sorted(list(top_artists.intersection(user_top_artists)), key=lambda artist: listeners_dict[artist], reverse=True)
-print(listeners_dict)
 
 if(len(user_top_artists) < args.userartists):
     print(f"User does not have enough artist scrobbles in this period! ({len(user_top_artists)} artists, {args.userartists} required)")
