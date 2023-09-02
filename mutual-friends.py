@@ -3,7 +3,7 @@
 
 import argparse
 import requests
-from fmapi import API_KEY
+from fmapi import get_request
 
 def store_arg(value): # This is a really janky way to store the first argument as a variable so the program can make sure the same username has not been entered twice.
     global username1 
@@ -24,8 +24,8 @@ friends1 = set()
 friends2 = set()
 
 for user in args.username1, args.username2:
-    response = requests.get(f"https://ws.audioscrobbler.com/2.0/?method=user.getfriends&user={user}&api_key={API_KEY}&format=json")
-    response.raise_for_status() # End program if error occurs
+    response = get_request({"method": "user.getfriends", 
+                            "user": user})
     
     for record in response.json()["friends"]["user"]:
         if user == args.username1:
