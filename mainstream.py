@@ -4,7 +4,7 @@
 
 import argparse
 import requests
-from credentials import API_KEY
+from lastfm-api import API_KEY
 
 def check_positive(value):
     ivalue = int(value)
