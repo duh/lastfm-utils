@@ -3,7 +3,7 @@
 
 import argparse
 import requests
-from credentials import API_KEY
+from lastfm-api import API_KEY
 
 def store_arg(value): # This is a really janky way to store the first argument as a variable so the program can make sure the same username has not been entered twice.
     global username1 
