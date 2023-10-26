@@ -1,16 +1,9 @@
 # Returns how many of a user's top 100 artists are in the site's top 500 artists
-# Usage: python mainstream.py user --period (7day|1month|3month|6month|12month|alltime) --userartists (int) --chartartists (int)
+# Usage: python mainstream.py (username) --period (7day|1month|3month|6month|12month|alltime) --userartists (int) --chartartists (int)
 # Defaults to alltime period, 100 user artists, 500 chart artists.
 
 import argparse
-import requests
-from fmapi import get_request
-
-def check_positive(value):
-    ivalue = int(value)
-    if ivalue <= 0:
-        raise argparse.ArgumentTypeError("Argument must be a positive int!")
-    return ivalue
+from fmapi import get_request, check_positive
 
 argparser = argparse.ArgumentParser(description="Returns how many of a user's top artists are in the top 1000 artists.", epilog="Written by @duh as part of lastfm-utils.")
 argparser.add_argument("username", type=str)
